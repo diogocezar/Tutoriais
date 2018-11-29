@@ -208,6 +208,12 @@ http://bit.ly/2FQwvij
 
 Adiciona hightlight à sintaxe dos styled-components.
 
+### Colorize
+
+https://bit.ly/2E567iS
+
+Insere um background da cor do hexadecimal/rgb também no Java Script
+
 ---
 
 É isso pessoal, qualquer contribuição é muito bem vinda!
