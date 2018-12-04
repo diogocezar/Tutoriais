@@ -29,7 +29,7 @@ $ yarn add eslint -D
 O próximo passo é iniciar a sua configuração:
 
 ```bash
-$ yarn run --init
+$ yarn run eslint --init
 ```
 
 Com isso, algumas perguntas deverão ser respondidas, e vamos manter este padrão:
