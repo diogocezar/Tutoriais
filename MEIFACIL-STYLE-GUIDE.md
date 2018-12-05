@@ -15,7 +15,7 @@ A idéia deste tutorial é manter de fato uma forma de compatibilidade entre os 
 
 Por isso, é muito importante que sigam todas essas instruções para que todo o ambiente seja configurado corretamente.
 
-Lembrando que todo esse tutorial foi baseado e adaptado deste material:
+Lembrando que todo esse tutorial foi baseado e foi adaptado deste material:
 
 http://bit.ly/2Pkawj9
 
