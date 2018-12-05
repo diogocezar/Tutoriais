@@ -33,12 +33,16 @@ Dentro do projeto em questão, instale o ESLint:
 
 ```bash
 $ yarn add eslint -D
+# or 
+$ npm i eslint -D
 ```
 
 O próximo passo é iniciar a sua configuração:
 
 ```bash
 $ yarn run eslint --init
+# or  
+$ ./node_modules/.bin/eslint --init
 ```
 
 Com isso, algumas perguntas deverão ser respondidas, e vamos manter este padrão:
@@ -61,18 +65,52 @@ Ainda, escolha o formato JSON para o padrão de arquivo de configuração.
 
 Por fim, ele irá instalar alguns pacotes adicionais para a configuração.
 
+
 ## Instalando o TSLint
 
 Dentro do projeto em questão, instale o TSLint:
 
 ```bash
 $ yarn add tslint -D
+# or 
+$ npm i tslint -D
 ```
 
 Depois execute da mesma forma o assistente do tslint:
 
 ```bash
-$ tslint --init
+$ yarn run tslint --init
+# or 
+$ ./node_modules/.bin/tslint --init
+```
+
+O próximo passo é instalar a configuração do airbnb:
+
+```bash
+
+$ yarn add tslint-config-airbnb -D
+# or 
+$ npm install tslint-config-airbnb --save-dev
+```
+
+O próximo passo é instalar a configuração do prettier:
+
+```bash
+$ yarn add --dev tslint-config-prettier
+# or 
+$ npm install --save-dev tslint-config-prettier
+```
+
+O próximo passo é atualizar o tslint:
+
+```JSON
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint-config-airbnb", "tslint-config-prettier"],
+  "jsRules": {},
+  "rules": {},
+  "rulesDirectory": []
+}
 ```
 
 ## Configurando as extensões
@@ -96,47 +134,16 @@ Abra o arquivo JSON de configurações do usuário e adicione:
 
 ## Utilizando algumas configurações personalizadas
 
-Utilize este setup de configurações para o ESLint:
+
+Após você deve criar um arquivo .prettierrc, com o seguinte conteúdo:
 
 ```JSON
 {
-	"parser": "babel-eslint",
-	"env": {
-		"browser": true,
-		"jest": true
-	},
-	"plugins": ["react", "jsx-a11y", "import"],
-	"extends": "airbnb",
-	"rules": {
-		"react/jsx-filename-extension": [
-			"error",
-			{
-				"extensions": [".js", ".jsx"]
-			}
-		],
-		"react/jsx-indent": ["error", "tab"],
-		"react/jsx-indent-props": ["error", "tab"],
-		"semi": [2, "never"],
-		"indent": ["error", "tab"],
-		"no-tabs": 0,
-		"quotes": [2, "single", "avoid-escape"],
-		"global-require": "off",
-		"import/prefer-default-export": "off",
-		"no-unused-expressions": [
-			"error",
-			{
-				"allowTaggedTemplates": true
-			}
-		]
-	}
+	"singleQuote": true,
+	"trailingComma": "all",
+	"semi": false,
+	"tabWidth": 4
 }
-```
-
-Para isso, basta editar o conteúdo do arquivo .eslintrc.json com o conteúdo acima.
-
-Utilize este setup de configurações para o TSLint:
-
-```JSON
 
 ```
 
