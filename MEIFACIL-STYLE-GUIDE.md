@@ -4,11 +4,12 @@ Olá pessoa, tudo certinho?
 
 Este tutorial tem como objetivo a criação de um guia de estilos para o desenvolvimento nas novas Stacks da MEI Fácil.
 
-Para isso, vamos utilizar 3 principais ferramentas:
+Para isso, vamos utilizar 4 principais ferramentas:
 
 1. ESLint; (https://eslint.org/)
-2. Prettier; (https://github.com/prettier/prettier)
-3. Editor Config; (https://editorconfig.org/)
+2. TSLint; (https://palantir.github.io/tslint/)
+3. Prettier; (https://github.com/prettier/prettier)
+4. Editor Config; (https://editorconfig.org/)
 
 A idéia deste tutorial é manter de fato uma forma de compatibilidade entre os códigos escritos por diferentes programadores.
 
@@ -17,6 +18,14 @@ Por isso, é muito importante que sigam todas essas instruções para que todo o
 Lembrando que todo esse tutorial foi baseado e adaptado deste material:
 
 http://bit.ly/2Pkawj9
+
+O importante é salientar a diferença entre o ESLint e o TSLint;
+
+Ambos são ferramentas para ajudar na correção e padronização dos códigos, com a diferença que o ESLint é utilizado para JavaScript e o TSLint para TypeScript;
+
+Alguns frameworks já trazem o ambiente instalado como por exemplo o Nest com o TSLint.
+
+Mas, para a configuração do seu ambiente, recomenda-se seguir os próximos passos para realizar a configuração completa do seu ambiente;
 
 ## Instalando o ESLint
 
@@ -52,12 +61,27 @@ Ainda, escolha o formato JSON para o padrão de arquivo de configuração.
 
 Por fim, ele irá instalar alguns pacotes adicionais para a configuração.
 
+## Instalando o TSLint
+
+Dentro do projeto em questão, instale o TSLint:
+
+```bash
+$ yarn add tslint -D
+```
+
+Depois execute da mesma forma o assistente do tslint:
+
+```bash
+$ tslint --init
+```
+
 ## Configurando as extensões
 
 Você precisará instalar e ativar em seu VSCode as seguintes extensões:
 
 1. ESLint
-2. Prettier
+2. TSLint
+3. Prettier
 
 Depois disso ainda é necessário alterar algumas configurações do VSCode para que o ambiente se mantenha atualizado de acordo com o esperado.
 
@@ -67,6 +91,7 @@ Abra o arquivo JSON de configurações do usuário e adicione:
 "editor.formatOnPaste": true,
 "editor.formatOnSave": true,
 "prettier.eslintIntegration": true,
+"prettier.tslintIntegration": true
 ```
 
 ## Utilizando algumas configurações personalizadas
@@ -108,6 +133,12 @@ Utilize este setup de configurações para o ESLint:
 ```
 
 Para isso, basta editar o conteúdo do arquivo .eslintrc.json com o conteúdo acima.
+
+Utilize este setup de configurações para o TSLint:
+
+```JSON
+
+```
 
 Ainda, na raiz do projeto, crie um arquivo chamado .editorconfig, com o seguinte conteúdo:
 

@@ -82,6 +82,12 @@ http://bit.ly/2FGCK8r
 
 Integra o ESLint ao VSCode.
 
+### TSLint
+
+http://bit.ly/2FXSJiE
+
+Integra o TSLint ao VSCode.
+
 ### File Utils
 
 http://bit.ly/2FLfl5H
