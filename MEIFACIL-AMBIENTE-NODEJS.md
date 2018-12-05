@@ -38,7 +38,7 @@ Para verificar se toda a instalação ocorreu bem inicie o bash e digite:
 node -v
 ```
 
-Após rodar este comando você verá a versão do NodeJS instalada em seus sistema.
+Após rodar este comando você verá a versão do NodeJS instalada em seu sistema.
 
 # Alguns links úteis
 
