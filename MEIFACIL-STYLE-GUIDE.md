@@ -118,8 +118,6 @@ O próximo passo é atualizar o tslint.json:
 }
 ```
 
-E por fim, configurar o prettier, atualizando o .prettierrc:
-
 ## Configurando as extensões
 
 Você precisará instalar e ativar em seu VSCode as seguintes extensões:
