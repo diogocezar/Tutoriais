@@ -49,5 +49,9 @@ Após rodar este comando você verá a versão do NodeJS instalada em seu sistem
 * [API](https://nodejs.org/api/)
 * [MongoDb Driver](https://mongodb.github.io)
 * [Como publicar seu pacote no NPM](https://hackernoon.com/publish-your-own-npm-package-946b19df577e)
-* [Deploy gratuito #1](https://www.netlify.com/)
+
+# Host com deploy gratuito
+* [Openode](https://www.openode.io/)
+* [Heroku](https://www.heroku.com/)
+
 
