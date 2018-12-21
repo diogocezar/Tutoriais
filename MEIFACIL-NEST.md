@@ -6,7 +6,7 @@ Toda a documentação oficial pode ser encontrada em: https://docs.nestjs.com/
 
 ## Introdução
 
-O Nest é um framework para construção de aplicação back-end escaláveis. Utiliza JavaScript progressivo, construído com TypeScrip (mas presenva a compatibilidade com JavaScript puro). Ainda, combina elementos de Programação Orientada a Objetos, Programação Funcional e Programação Funcional Reativa.
+O Nest é um framework para construção de aplicação back-end escaláveis. Utiliza JavaScript progressivo, construído com TypeScript (mas presenva a compatibilidade com JavaScript puro). Ainda, combina elementos de Programação Orientada a Objetos, Programação Funcional e Programação Funcional Reativa.
 
 O Nest usa o express como base de sua implementação mas que pode ser facilmente trocado por uma outra implementação, como por exemplo o fastify.
 
@@ -22,7 +22,7 @@ $ npm i -g @nestjs/cli
 
 Você verá muito TypeScript, mas isso pode ser aprendido de forma progressiva, desta forma, é possível combinar TypeScript com JavaScript puro.
 
-### Prerequisitos
+### Pré-requisitos
 
 Para que o nestjs funcione você precisa pelo menos da versão do node >= 8.9.0
 
@@ -71,6 +71,87 @@ bootstrap();
 Neste exemplo, temos o core do Nest instanciando um novo módulo, o único do nosso projeto.
 
 Depois, é iniciado o serviço que fica escutando em uma porta específica.
+
+## Rodando a aplicação
+
+```js
+$ npm run start
+```
+
+O comnando inicia um servidor HTTP na porta definida no arquivo **src/main.ts**.
+
+## Controllers
+
+Para criação de controllers, utilizamos classes e **decorators**. Os decorators associam classes com metadados requeridos, permitindo que o Nest crie um mapa de roteamento.
+
+## Roteamento
+
+```js
+import { Controller, Get } from "@nestjs/common";
+
+@Controller("cats")
+export class CatsController {
+  @Get()
+  findAll() {
+    return "This action returns all cats";
+  }
+}
+```
+
+Para a criação de um controller utilizamos o decorator **@Controller()**. O decorator **@Get()** informa o Nest para criar um endpoint para esta rota e mapear todas requisições para esse handler. Como foi declarado um prefixo para todas rotas **/cats**, o Nest irá mapear todos requisições /cats **GET** para este método. Quando uma requisição GET for feita para este endpoint, Nest irá retornar um status code 200 e sua resposta associada.
+
+No exemplo, acima foi definido um endpoint para pegar os dados. Da mesma forma, é possível a criação de novos registros, utilizando o método **POST**.
+
+```js
+import { Controller, Get, Post } from "@nestjs/common";
+
+@Controller("cats")
+export class CatsController {
+  @Post()
+  create() {
+    return "This action adds a new cat";
+  }
+
+  @Get()
+  findAll() {
+    return "This action returns all cats";
+  }
+}
+```
+
+O Nest fornece o restante dos endpoint decorators e são aplicados da mesma forma - **@Put()**, **@Delete()**, **@Patch()**. **@Options()**, **@Head()**, e **@All()**.
+
+## Objetos de requisição
+
+Muitos endpoints precisam de acesso aos detalhes da requisição. Por padrão, o Nest utiliza o objeto de requisição do Express. Para termos o acesso, podemos injetar um objeto de requisição no handler utilizando o **@Req()** decorator.
+
+```js
+import { Controller, Get, Req } from "@nestjs/common";
+
+@Controller("cats")
+export class CatsController {
+  @Get()
+  findAll(@Req() request) {
+    return "This action returns all cats";
+  }
+}
+```
+
+O objeto request representa a requisção HTTP e possui diversas propriedades. Também podemos utilizar **decorators específicos**, tais como **@Body()** para ter acesso ao body da requisição.
+
+## Rotas com parâmetros
+
+Para definir rotas com parâmetros, podemos passar diretamente o parâmetro pelo caminho da rota.
+
+```js
+@Get(':id')
+findOne(@Param() params) {
+  console.log(params.id);
+  return `This action returns a #${params.id} cat`;
+}
+```
+
+## Módulos
 
 No nest, temos um conceito de módulos. Podemos pensar que os módulos são agrupamentos de funcionalidades em comum.
 
