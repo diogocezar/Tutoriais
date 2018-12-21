@@ -137,7 +137,7 @@ export class CatsController {
 }
 ```
 
-O objeto request representa a requisção HTTP e possui diversas propriedades. Também podemos utilizar **decorators específicos**, tais como **@Body()** para ter acesso ao body da requisição.
+O objeto request representa a requisição HTTP e possui diversas propriedades. Também podemos utilizar **decorators específicos**, tais como **@Body()** para ter acesso ao body da requisição.
 
 ## Rotas com parâmetros
 
@@ -149,6 +149,89 @@ findOne(@Param() params) {
   console.log(params.id);
   return `This action returns a #${params.id} cat`;
 }
+```
+
+## Payloads de requisição
+
+O método **POST** anterior não recebe nenhum parâmetro do client-side. Podemos consertar isso utilizando o argumento **@Body()**.
+
+Caso utilize TypeScript, é preciso criar um **DTO** (Data Transfer Object) schema. Este objeto define como os dados irão trafegar na rede. Podemos definir o DTO através de interfaces **TypeScript** ou classes. É recomendado a utilização de **classes**, pois as interfaces são removidas durante a transpilação do código, dessa forma o Nest não pode se referir a eles. Algumas funcionalidades do Nest permitem novas possibilidades quando possuem acesso ao metatipo da variável.
+
+**DTO (Data Transfer Object)**
+
+```js
+export class CreateCatDto {
+  readonly name: string;
+  readonly age: number;
+  readonly breed: string;
+}
+```
+
+Podemos inserir o recém criado schema dentro do **CatsController**:
+
+```js
+@Post()
+async create(@Body() createCatDto: CreateCatDto) {
+  return 'This action adds a new cat';
+}
+```
+
+## Exemplo de Controller utilizando os métodos HTTP
+
+```js
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete
+} from "@nestjs/common";
+
+@Controller("cats")
+export class CatsController {
+  @Post()
+  create(@Body() createCatDto) {
+    return "This action adds a new cat";
+  }
+
+  @Get()
+  findAll(@Query() query) {
+    return `This action returns all cats (limit: ${query.limit} items)`;
+  }
+
+  @Get(":id")
+  findOne(@Param("id") id) {
+    return `This action returns a #${id} cat`;
+  }
+
+  @Put(":id")
+  update(@Param("id") id, @Body() updateCatDto) {
+    return `This action updates a #${id} cat`;
+  }
+
+  @Delete(":id")
+  remove(@Param("id") id) {
+    return `This action removes a #${id} cat`;
+  }
+}
+```
+
+## Importando o Controller
+
+O Nest ainda não sabe da existência do **CatsController** e por isso não criará uma instância da classe.
+
+Controllers sempre fazem parte do module, por isso temos um array de **controllers** no decorator **@Module()**. Neste importaremos o **CatsController**.
+
+```js
+import { Module } from "@nestjs/common";
+import { CatsController } from "./cats/cats.controller";
+
+@Module({
+  controllers: [CatsController]
+})
+export class ApplicationModule {}
 ```
 
 ## Módulos
