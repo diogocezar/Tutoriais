@@ -354,3 +354,27 @@ import { AppService } from "./app.service";
 })
 export class AppModule {}
 ```
+
+## Middleware
+
+Um middleware é uma função que é chamada antes do manipulador de rotas. Os middlewares possuem acesso as requisições e respostas. Por padrão, os middlewares no Nest são equivalentes aos do Express.
+
+Os middlewares no Nest podem ser funções ou classes com um **@Injectable()** decorator. A classe precisa implementar o **NestMiddleware**, enquanto a função não precisa de um tratamento especial.
+
+Exemplos de Middleware usando classes.
+
+```js
+import { Injectable, NestMiddleware, MiddlewareFunction } from "@nestjs/common";
+
+@Injectable()
+export class LoggerMiddleware implements NestMiddleware {
+  resolve(...args: any[]): MiddlewareFunction {
+    return (req, res, next) => {
+      console.log("Request...");
+      next();
+    };
+  }
+}
+```
+
+O método **resolve()** precisa retornar um middleware específico da biblioteca **(req, res, next) => any**.
