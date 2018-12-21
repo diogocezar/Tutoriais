@@ -218,7 +218,7 @@ export class CatsController {
 }
 ```
 
-## Importando o Controller
+## Importando o Controller no module
 
 O Nest ainda não sabe da existência do **CatsController** e por isso não criará uma instância da classe.
 
@@ -288,6 +288,22 @@ export class CatsController {
 
 O provider é injetado na classe construtora.
 
+## Importação do Provider no module
+
+Precisamos informar o Nest da existência do Provider. Para isso o importaremos no **app.module.ts** colocando-o no vetor de providers.
+
+```js
+import { Module } from "@nestjs/common";
+import { CatsController } from "./cats/cats.controller";
+import { CatsService } from "./cats/cats.service";
+
+@Module({
+  controllers: [CatsController],
+  providers: [CatsService]
+})
+export class ApplicationModule {}
+```
+
 ## Módulos
 
 No nest, temos um conceito de módulos. Podemos pensar que os módulos são agrupamentos de funcionalidades em comum.
@@ -307,4 +323,34 @@ import { AppService } from "./app.service";
 export class AppModule {}
 ```
 
-Este módulo importa o módulo comum do nest, e também outros 2 conceitos principais: AppController e AppService.
+Este módulo importa o módulo comum do nest, e também importamos um **Controller** e um **Provider**.
+
+Podemos criar outros módulos agrupando funcionalidades em comum.
+
+```js
+import { Module } from "@nestjs/common";
+import { CatsController } from "./cats.controller";
+import { CatsService } from "./cats.service";
+
+@Module({
+  controllers: [CatsController],
+  providers: [CatsService]
+})
+export class CatsModule {}
+```
+
+Aqui foi criado um módulo que agrupa funcionalidades relacionadas a **cats**. Devemos importar esse módulo no módulo raiz.
+
+```js
+import { Module } from "@nestjs/common";
+import { CatsModule } from "./cats/cats.module";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+
+@Module({
+  imports: [CatsModule],
+  controllers: [AppController],
+  providers: [AppService]
+})
+export class AppModule {}
+```
