@@ -98,7 +98,7 @@ export class CatsController {
 }
 ```
 
-Para a criação de um controller utilizamos o decorator **@Controller()**. O decorator **@Get()** informa o Nest para criar um endpoint para esta rota e mapear todas requisições para esse handler. Como foi declarado um prefixo para todas rotas **/cats**, o Nest irá mapear todos requisições /cats **GET** para este método. Quando uma requisição GET for feita para este endpoint, Nest irá retornar um status code 200 e sua resposta associada.
+Para a criação de um controller utilizamos o decorator **@Controller()**. No **@Controller()**, podemos usar um prefixo que serve para indicar uma rota comum a todos handlers do controller, no caso foi especificado a rota comum **/cats**. O decorator **@Get()** informa o Nest para criar um endpoint para esta rota e mapear todas requisições para esse handler. Como foi declarado um prefixo para todas rotas **/cats**, o Nest irá mapear todos requisições /cats **GET** para este método. Quando uma requisição GET for feita para este endpoint, Nest irá retornar um status code 200 e sua resposta associada.
 
 No exemplo, acima foi definido um endpoint para pegar os dados. Da mesma forma, é possível a criação de novos registros, utilizando o método **POST**.
 
