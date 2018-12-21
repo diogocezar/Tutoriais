@@ -234,6 +234,60 @@ import { CatsController } from "./cats/cats.controller";
 export class ApplicationModule {}
 ```
 
+## Providers
+
+Providers são classes JavaScript com um **@Injectable()** decorator. Basicamente, quase tudo pode ser considerado um provider. Todos eles podem injetar dependências através do **construtor**, permitindo a criação de várias relações.
+
+Os controllers lidam com as requisições HTTP e devem passar as tarefas mais complexas para um **provider**.
+
+**CatsService provider**
+
+```js
+import { Injectable } from '@nestjs/common';
+import { Cat } from './interfaces/cat.interface';
+
+@Injectable()
+export class CatsService {
+  private readonly cats: Cat[] = [];
+
+  create(cat: Cat) {
+    this.cats.push(cat);
+  }
+
+  findAll(): Cat[] {
+    return this.cats;
+  }
+}
+```
+
+Aqui temos um provider com dois métodos. O **@Injectable()** decorator anexa os metadados, portanto o Nest sabe que esta classe é um provider.
+
+Agora devemos importar esse **provider** dentro do **CatsController**
+
+```js
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { CreateCatDto } from './dto/create-cat.dto';
+import { CatsService } from './cats.service';
+import { Cat } from './interfaces/cat.interface';
+
+@Controller('cats')
+export class CatsController {
+  constructor(private readonly catsService: CatsService) {}
+
+  @Post()
+  async create(@Body() createCatDto: CreateCatDto) {
+    this.catsService.create(createCatDto);
+  }
+
+  @Get()
+  async findAll(): Promise<Cat[]> {
+    return this.catsService.findAll();
+  }
+}
+```
+
+O provider é injetado na classe construtora.
+
 ## Módulos
 
 No nest, temos um conceito de módulos. Podemos pensar que os módulos são agrupamentos de funcionalidades em comum.
