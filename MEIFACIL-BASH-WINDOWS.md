@@ -107,6 +107,10 @@ Vamos precisar de uma forma de editar arquivos dentro do terminal, recomendo o n
 ```bash
 $ nano ~/.bashrc
 ```
+Adicione o comando screenfetch 
+```bash
+$ sudo apt install screenfetch
+```
 
 Adicione isso para fazer com que o ZSH seja o padrão!
 
