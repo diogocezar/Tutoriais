@@ -220,6 +220,19 @@ https://bit.ly/2E567iS
 
 Insere um background da cor do hexadecimal/rgb também no Java Script
 
+
+### Import Cost
+
+http://bit.ly/2Cm94cL
+
+Mostra quanto custa cada import
+
+### Auto Rename Tag
+
+http://bit.ly/2CbHA9D
+
+Renomeia automaticamente pares de tags HTML.
+
 ---
 
 É isso pessoal, qualquer contribuição é muito bem vinda!
